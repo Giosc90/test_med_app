@@ -24,7 +24,6 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault();
 
-    // ✅ Validate password field
     if (password.trim() === "") {
       setPasswordError("Password is required.");
       return;
@@ -111,7 +110,7 @@ const Login = () => {
                   placeholder="Enter your password" 
                   aria-describedby="helpId" 
                 />
-                {/* ✅ Show password error message if empty */}
+
                 {passwordError && (
                   <div style={{ color: 'red', marginTop: '5px' }}>
                     {passwordError}
