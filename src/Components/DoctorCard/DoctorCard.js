@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './DoctorCard.css';
-import AppointmentFormIC from '../AppointmentFormIC/AppointmentFormIC'
 import { v4 as uuidv4 } from 'uuid';
+import AppointmentForm from '../AppointmentForm/AppointmentForm';
 
 
 const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
@@ -24,6 +24,7 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
       id: uuidv4(),
       ...appointmentData,
     };
+    console.log(newAppointment)
     const updatedAppointments = [...appointments, newAppointment];
     setAppointments(updatedAppointments);
     setShowModal(false);
@@ -41,13 +42,7 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
           <div className="doctor-card-detail-experience">{experience} years experience</div>
           <div className="doctor-card-detail-consultationfees">Ratings: {ratings}</div>
         </div>
-        {/* for reference  */}
-        {/* <div>
-              <button className='book-appointment-btn'>                    
-                <div>Book Appointment</div>
-              <div>No Booking Fee</div>
-            </button>
-              </div> */}
+        
       </div>
 
 
@@ -61,7 +56,6 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
               ) : (
                 <div>Book Appointment</div>
               )}
-              <div>No Booking Fee</div>
             </button>
           }
           modal
@@ -69,7 +63,9 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
           onClose={() => setShowModal(false)}
         >
           {(close) => (
-            <div className="doctorbg" style={{ height: '100vh', overflow: 'scroll' }}>
+            <div className="doctorbg" 
+            style={{ height: '80vh', overflow: 'scroll', borderRadius: "50px" }}
+            >
               <div>
                 <div className="doctor-card-profile-image-container">
                 <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"> <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/> </svg>
@@ -89,12 +85,14 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
                     <div className="bookedInfo" key={appointment.id}>
                       <p>Name: {appointment.name}</p>
                       <p>Phone Number: {appointment.phoneNumber}</p>
+                      <p>Date: {appointment.appointmentDate}</p>
+                      <p>Time: {appointment.appointmentTime}</p>
                       <button onClick={() => handleCancel(appointment.id)}>Cancel Appointment</button>
                     </div>
                   ))}
                 </>
               ) : (
-                <AppointmentFormIC doctorName={name} doctorSpeciality={speciality} onSubmit={handleFormSubmit} />
+                <AppointmentForm doctorName={name} doctorSpeciality={speciality} onSubmit={handleFormSubmit} />
               )}
             </div>
           )}
