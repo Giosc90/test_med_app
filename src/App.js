@@ -12,6 +12,7 @@ import Login from './Components/Login/Login';
 import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 import InstantConsultation from './Components/InstantConsultation/InstantConsultation';
 import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
+import Notification from './Components/Notification/Notification';
 
 // Function component for the main App
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <div className="App">
         {/* Set up BrowserRouter for routing */}
         <BrowserRouter>
+        <Notification>
           {/* Display the Navbar component */}
           <Navbar/>
 
@@ -42,6 +44,7 @@ function App() {
             <Route path="/book-consultation" element={<BookingConsultation />} />
             
           </Routes>
+        </Notification>
         </BrowserRouter>
     </div>
   );
