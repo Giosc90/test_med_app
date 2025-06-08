@@ -1,5 +1,5 @@
 // Import necessary modules from React library
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 
 // Import components for routing from react-router-dom library
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -16,13 +16,19 @@ import Notification from './Components/Notification/Notification';
 
 // Function component for the main App
 function App() {
+    const [appointments, setAppointments] = useState([]);
+
 
   // Render the main App component
   return (
     <div className="App">
         {/* Set up BrowserRouter for routing */}
         <BrowserRouter>
-        <Notification>
+        <Notification
+        
+        appointments={appointments}
+        
+        >
           {/* Display the Navbar component */}
           <Navbar/>
 
@@ -41,7 +47,11 @@ function App() {
 
             <Route path="/finddoctor" element={<FindDoctorSearch />} />
 
-            <Route path="/book-consultation" element={<BookingConsultation />} />
+            <Route path="/book-consultation" element={<BookingConsultation 
+            appointments={appointments}
+            setAppointments={setAppointments}
+            
+            />} />
             
           </Routes>
         </Notification>

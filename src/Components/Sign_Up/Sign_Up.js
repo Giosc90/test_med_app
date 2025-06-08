@@ -38,7 +38,6 @@ const Sign_Up = () => {
         });
 
         const json = await response.json(); // Parse the response JSON
-
         if (json.authtoken) {
             // Store user data in session storage
             sessionStorage.setItem("auth-token", json.authtoken);

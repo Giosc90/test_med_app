@@ -6,9 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 import AppointmentForm from '../AppointmentForm/AppointmentForm';
 
 
-const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
+const DoctorCard = ({ name, speciality, experience, ratings, profilePic,appointments,
+setAppointments }) => {
   const [showModal, setShowModal] = useState(false);
-  const [appointments, setAppointments] = useState([]);
 
   const handleBooking = () => {
     setShowModal(true);
@@ -16,6 +16,8 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 
   const handleCancel = (appointmentId) => {
     const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
+        console.log('adding a new appointment:',updatedAppointments)
+
     setAppointments(updatedAppointments);
   };
 
@@ -26,6 +28,7 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
     };
     console.log(newAppointment)
     const updatedAppointments = [...appointments, newAppointment];
+    console.log('adding a new appointment:',[...appointments, newAppointment] )
     setAppointments(updatedAppointments);
     setShowModal(false);
   };
