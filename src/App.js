@@ -5,14 +5,16 @@ import React, { useEffect,useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Import custom Navbar component
-import Navbar from './Components/Navbar/Navbar';
 import Landing_Page from './Components/Landing_Page/Landing_Page';
-import Sign_Up from './Components/Sign_Up/Sign_Up';
 import Login from './Components/Login/Login';
+import Sign_Up from './Components/Sign_Up/Sign_Up';
+import Navbar from './Components/Navbar/Navbar';
+import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
 import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 import InstantConsultation from './Components/InstantConsultation/InstantConsultation';
-import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
 import Notification from './Components/Notification/Notification';
+import ReviewForm from './Components/ReviewForm/ReviewForm';
+import DoctorCard from './Components/DoctorCard/DoctorCard';
 
 // Function component for the main App
 function App() {
@@ -37,8 +39,6 @@ function App() {
 
             <Route path="/" element={<Landing_Page />} />
 
-            <Route path="/navbar" element={<Navbar />} />
-
             <Route path="/login" element={<Login />} />
 
             <Route path="/signup" element={<Sign_Up />} />
@@ -53,6 +53,8 @@ function App() {
             
             />} />
             
+            <Route path="/review" element={<ReviewForm />} />
+
           </Routes>
         </Notification>
         </BrowserRouter>
