@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import "./Navbar.css";
+import ProfileCard from "../ProfileCard/ProfileCard";
 
 
 
@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
-    const[email,setEmail]=useState("");
+    const [email,setEmail]=useState("");
     const [showDropdown, setShowDropdown] = useState(false);
     const handleClick = () => setClick(!click);
 
@@ -20,12 +20,10 @@ const Navbar = () => {
         sessionStorage.removeItem("name");
         sessionStorage.removeItem("email");
         sessionStorage.removeItem("phone");
-        // remove email phone
         localStorage.removeItem("doctorData");
         setIsLoggedIn(false);
-        // setUsername("");
        
-        // Remove the reviewFormData from local storage
+
         for (let i = 0; i < localStorage.length; i++) {
           const key = localStorage.key(i);
           if (key.startsWith("reviewFormData_")) {
@@ -76,11 +74,20 @@ const Navbar = () => {
          <Link to="/review">Reviews</Link>
         </li>
         {isLoggedIn?(
+          
           <>
-            <li className="link">
-              Welcome, {username} !
+            <li 
+            // onClick={handleDropdown}
+            className="link profile-dropdown">
+              <h4 style={{marginLeft: "20px"}}
+              onClick={()=>setShowDropdown(!showDropdown)}
+              
+              >Welcome {username} </h4>
+              {showDropdown && <ProfileCard setShowDropdown={setShowDropdown}/>  
+              }
             </li>
-            <li className="link">
+            
+            <li className="link" >
               <button className="btn2" onClick={handleLogout}>
                 Logout
               </button>
@@ -90,7 +97,7 @@ const Navbar = () => {
         ) : (
           <>
             <li className="link">
-              <Link to="/signup">
+              <Link to="/sign-up">
                 <button className="btn1">Sign Up</button>
               </Link>
             </li>

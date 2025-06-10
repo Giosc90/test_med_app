@@ -45,7 +45,7 @@ nav {
 /* Styling for the items in the dropdown menu */
 .dropdown-menu li {
     display: block;
-    width: 150px;
+    width: 50px;
     padding:5px;
 }
 
