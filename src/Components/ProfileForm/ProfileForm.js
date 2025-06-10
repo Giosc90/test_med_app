@@ -56,8 +56,12 @@ const ProfileForm = () => {
 
   // Function to enable edit mode for profile details
   const handleEdit = () => {
-    setEditMode(true);
+    setEditMode(!editMode);
   };
+
+useEffect(()=> {
+    console.log("user details from Profile Form", userDetails)
+}, [userDetails])
 
   // Function to update state when user inputs new data
   const handleInputChange = (e) => {
@@ -117,12 +121,30 @@ const ProfileForm = () => {
       {editMode ? (
         <form onSubmit={handleSubmit}>
           <label>
-            Email
+            Email:
             <input
               type="email"
               name="email"
-              value={userDetails.email}
-              disabled // Disable the email field
+              value={updatedDetails.email}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Name:
+            <input
+              type="name"
+              name="name"
+              value={updatedDetails.name}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Phone:
+            <input
+              type="phone"
+              name="phone"
+              value={updatedDetails.phone}
+              onChange={handleInputChange}
             />
           </label>
           {/* Create similar logic for displaying and editing name and phone from userDetails */}
@@ -130,8 +152,9 @@ const ProfileForm = () => {
         </form>
       ) : (
         <div className="profile-details">
-          <h1>Welcome, {userDetails.name}</h1>
-          {/* Implement code to display and allow editing of phone and email similar to above */}
+          <p> <b>Name:</b> {userDetails.name}</p>
+          <p> <b>Email:</b> {userDetails.email}</p>
+          <p> <b>Phone:</b> {userDetails.phone}</p>
           <button onClick={handleEdit}>Edit</button>
         </div>
       )}
