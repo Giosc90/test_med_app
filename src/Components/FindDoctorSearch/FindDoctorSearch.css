@@ -162,14 +162,15 @@
 }
 
 .home-search-container {
-    /* width: 712px; */
+
     padding: 20px 0;
     display: flex;
     align-items: center;
+    position: center;
 }
 
 .finddoctor {
-    /* height: 0 auto; */
+    height: 200 auto; 
     overflow: hidden;
 }
 
